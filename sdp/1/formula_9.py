@@ -3,7 +3,6 @@ import numpy as np
 import scipy.linalg as linalg
 import control
 
-
 A = np.array([
     [0.2, 0.7, 0, 0],
     [0, 0.4, 0.7, 0],
