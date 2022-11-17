@@ -56,13 +56,10 @@ xk = [np.array([
             [1], [2], [3], [4]
         ])
     ]
-uk = [np.array([
-    [0], [0], [0], [0]
-])]
+uk = [ ]
 
 D = []
-d = np.append(xk[0], uk[0], axis=0)
-D.append(d)
+
 # K = [np.array( [[-0.13663838, -0.40314018, -0.0113336,  -0.0119179 ]
 #                         ,[-0.00246948, -0.24297699, -0.41892659, -0.02369211]
 #                         ,[-0.02973127, -0.01084326, -0.31382405, -0.4853211 ]
@@ -76,19 +73,20 @@ for t in range(10):
             u = np.random.normal(0, 1, size=m).reshape((m, 1))
             # u = np.matmul(K[-1], xk[-1]) + np.random.normal(0, 0.01, size=m).reshape((m, 1))
         else:
-            u = np.matmul(K[0], xk[-1]) + np.random.normal(0, 0.01, size=m).reshape((m, 1))
+            u = K[0]@xk[-1] + np.random.normal(0, 0.01, size=m).reshape((m, 1))
             # print(f'u: \n {u}')
-        x = np.matmul(A, xk[-1]) + np.matmul(B, u)
+        d = np.append(xk[-1], u, axis=0)
+        D.append(d)
+        x = A@xk[-1] + B@u
         # print(f'x: \n {x}')
         xk.append(x)
         uk.append(u)
-        d = np.append(x, u, axis=0)
-        D.append(d)
+        
 
     # print(len(xk))
     XD = np.transpose(np.asarray(xk[-l:], order='C')[:, :, 0])
     # print(XD.shape)
-    Dv = np.transpose(np.asarray(D[-l-1:-1], order='C')[:, :, 0])
+    Dv = np.transpose(np.asarray(D[-l-1:], order='C')[:, :, 0])
     print(f'rank(D): \n {np.linalg.matrix_rank(Dv)}')
     # print(Dv.shape)
     try:
