@@ -14,6 +14,13 @@ proposed in the paper.
 - The other problem is that the barrier function is undefined when the state of the system passes the 
 safe set. There is no guarantee to keep the system states in the safe zone during the learning phase. 
 
+- There is no discussion on how to choose the initial policy for the system. 
+
+- Without an initial stabilizing controller, the algorihtm diverges!
+
+- The simulation done in the paper is wrong, because the simulaton was done on the transformed system, which is not correct!
+
+- No information is provided for the parameters of the algorithm used in the simulation. 
 
 '''
 
@@ -294,11 +301,11 @@ for i in range(1,n):
 
 
     # RL policy
-    # u1[i], u2[i], wc1, wc2, wa1, wa2 = safe_RL_policy(x0, u1[i-1], u2[i-1], wc1, wc2, wa1, wa2)
+    u1[i], u2[i], wc1, wc2, wa1, wa2 = safe_RL_policy(x0, u1[i-1], u2[i-1], wc1, wc2, wa1, wa2)
 
 
     # Theoretical Optimal Policy for uncontrained system 
-    u1[i], u2[i] = optimal_policy(x0)
+    # u1[i], u2[i] = optimal_policy(x0)
     
     
     # solve for next step
