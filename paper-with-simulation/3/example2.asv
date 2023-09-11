@@ -1,0 +1,155 @@
+
+clear all
+clc
+
+N = 10000; 
+h = 0.01; % sampling time
+x1 = zeros(1, N);
+x2 = zeros(1, N);
+% u = zeros(1, N);
+u = 0.2*rand(1, N); % for some excitation
+
+
+% measurement noise
+v1 = zeros(1, N);
+v2 = zeros(1, N);
+
+% initial condition
+x1(1) = 1;
+x2(1) = 1;
+
+
+%% Gradient Parameters
+EG = 0.1;
+EC = 0.01;
+
+%% parameters
+Thetaf1 = [1 h]; %x1k + h*x2k
+Thetaf2 = [1-0.2*h 0.1*h -4.905*h]; % (1-0.2*h)*x2k + 0.1*h*u - 4.905*h*sin(x1k)
+q = 4;
+P = 4;
+Thetahatf1 = zeros(q, N); % ident
+Thetahatf2 = zeros(q, N);
+
+yh1 = zeros(1, N);
+yh2 = zeros(1, N);
+
+y1 = zeros(1, N);
+y2 = zeros(1, N);
+
+e1 = zeros(1, N);
+e2 = zeros(1, N);
+
+phi = zeros(q, N);
+
+M = zeros(q, P);
+Yh1 = zeros(1, P);
+Yh2 = zeros(2, P);
+mi = 1;
+for k=1:N
+    u(k) = u(k) + 0.1*exp(-0.1*k)*(sin(0.1*x1(k))+.5*sin(0.3*x2(k)) ...
+        +0.1*sin(0.7*x1(k))+0.8*sin(1.6*x2(k))+0.2*sin(1.4*x2(k)));
+    x1(k+1) = Thetaf1(1)*x1(k) + Thetaf1(2)*x2(k);
+    x2(k+1) = Thetaf2(1)*x2(k) + Thetaf2(2)*u(k) + Thetaf2(3)*sin(x1(k));
+
+    phi(:, k) = [x1(k); x2(k); u(k); sin(x1(k))];
+
+    yh1(k) = Thetahatf1(:, k)'*phi(:, k);
+    yh2(k) = Thetahatf2(:, k)'*phi(:, k);
+
+    v1(k) = 0; %-0.01+2*0.01*rand();
+    v2(k) = 0; %-0.01+2*0.01*rand();
+
+    y1(k) = x1(k+1) + v1(k);
+    y2(k) = x2(k+1) + v2(k);
+
+    e1(k) = yh1(k) - y1(k);
+    e2(k) = yh2(k) - y2(k);
+
+    if k <= q
+        M(:, mi) = phi(:, k);
+        Yh1(mi) = yh1(k);
+        Yh2(mi) = yh2(k);
+        mi = mi+1;
+    end
+
+%     rank(M)
+
+    if k > q
+        M_new = M;
+        M_best = M;
+        Yh1_new = Yh1;
+        Yh2_new = Yh2;
+        Yh1_best = Yh1;
+        Yh2_best = Yh2;
+        condition_num_best = 0;
+        S = zeros(4,4);
+        for j=1:q
+            S = S + M_best(:, j)*M_best(:, j)';
+        end
+%         S = M_best*M_best';
+        eigs = eig(S);
+        condition_num_best = abs(eigs(1)/eigs(q));
+        for i=1:P
+            M_new(:, i) = phi(:, k);
+            Yh1_new(i) = yh1(k);
+            Yh2_new(i) = yh2(k);
+            S = zeros(q,q);
+            for j=1:q
+                S = S + M_new(:, j)*M_new(:, j)';
+            end
+%             S = M_new*M_new';
+            eigs = eig(S);
+            if abs(eigs(1)/eigs(q)) > condition_num_best
+                M_best = M_new;
+                Yh1_best = Yh1_new;
+                Yh2_best = Yh2_new;
+                condition_num_best = abs(eigs(1)/eigs(q))
+            end
+
+            M_new = M;
+            Yh1_new = Yh1;
+            Yh2_new = Yh2;
+        end
+
+        M = M_best;
+        Yh1 = Yh1_best;
+        Yh2 = Yh2_best;
+        
+    end
+
+    PHIE1 = zeros(q, 1);
+    PHIE2 = zeros(q, 1);
+    for j=1:q
+        yhk1 = Thetahatf1(:, k)'*M(:, j);
+        ehk1 = yhk1 - Yh1(j);
+        PHIE1 = PHIE1 + M(:, j)*ehk1;
+
+        yhk2 = Thetahatf2(:, k)'*M(:, j);
+        ehk2 = yhk2 - Yh2(j);
+        PHIE2 = PHIE2 + M(:, j)*ehk2;
+
+    end
+    Thetahatf1(:, k+1) = Thetahatf1(:, k) - blkdiag(eye(2), zeros(2))*(EG*phi(:, k)*e1(k) + EC*PHIE1);
+    Thetahatf2(:, k+1) = Thetahatf2(:, k) - blkdiag(0, eye(3))*(EG*phi(:, k)*e2(k) + EC*PHIE2);
+
+
+
+
+end
+
+subplot(2,2,1)
+plot(x1)
+subplot(2,2,2)
+plot(x2)
+subplot(2,2,3)
+plot(0:N, Thetahatf1(1, :), 'b', 0:N, Thetaf1(1)*ones(1,N+1), 'y')
+ylim([-1, 5])
+hold on
+plot(0:N, Thetahatf1(2, :)/h, 'r', 0:N, Thetaf1(2)*ones(1, N+1)/h, 'g')
+subplot(2,2,4)
+plot(0:N, Thetahatf2(2, :), 'b', 0:N, Thetaf2(1)*ones(1,N+1), 'y')
+ylim([-6, 2])
+hold on
+plot(0:N, Thetahatf2(3, :)/h, 'r', 0:N, Thetaf2(2)*ones(1, N+1)/h, 'g')
+plot(0:N, Thetahatf2(4, :)/h, 'c', 0:N, Thetaf2(3)*ones(1, N+1)/h, 'g')

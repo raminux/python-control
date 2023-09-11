@@ -1,1 +1,5 @@
 test_files/*
+ongoing-simulations/*
+safe-control-gym/*
+finals/*
+sdp/*

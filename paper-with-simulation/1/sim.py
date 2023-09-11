@@ -341,6 +341,8 @@ plt.ylabel('x2')
 plt.plot(t,x2,'r--',label='x2(t)')
 plt.xlabel('time (s)')
 
+
+
 fig0 = plt.figure()
 fig0.set_figheight(8)
 fig0.set_figwidth(8)
