@@ -38,9 +38,7 @@ python automatica.py
 ## 📊 Results
 Our method is validated on an **active car suspension simulation problem**, demonstrating superior robustness compared to existing methods. 
 
-<p align="center">
-  <img src="results/suspension_performance.png" width="500" />
-</p>
+
 
 ## 📜 Citation
 If you find this repository useful, please cite our paper:
