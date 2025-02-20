@@ -65,7 +65,7 @@ Feel free to contribute by opening issues or submitting pull requests!
 ## 📩 Contact
 For any inquiries or collaborations, reach out to:
 - **Email**: [esmzadra@msu.edu](mailto:esmzadra@msu.edu)
-- **LinkedIn**: [linkedin.com/in/raminesmzad](https://www.linkedin.com/in/raminesmzad/)
+- **LinkedIn**: [linkedin.com/in/raminesmzad](https://www.linkedin.com/in/ramin-esmzad/)
 
 ## 📜 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
