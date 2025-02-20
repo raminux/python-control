@@ -15,7 +15,7 @@ This repository provides a Python implementation of a **one-shot data-driven LQR
 
 The key contributions of this work include:
 - A **direct, non-iterative** learning approach for **discounted infinite-horizon LQR**.
-- The **first robustness-guaranteed** one-shot LQR learning method.
+- The **prior robustness-guaranteed** one-shot LQR learning method.
 - A novel **data-driven Lyapunov inequality formulation** for stochastic closed-loop systems.
 - A practical case study on **active car suspension control**.
 
@@ -32,28 +32,11 @@ pip install -r requirements.txt
 Run the main script to execute the LQR learning algorithm:
 
 ```bash
-python main.py
-```
-
-Example usage:
-
-```python
-from lqr_solver import DataDrivenLQR
-
-# Define system parameters
-Q = np.eye(n)
-R = np.eye(m)
-
-# Load or generate data
-X0, X1, U0 = load_data()
-
-# Solve for the optimal control gain
-lqr = DataDrivenLQR(X0, X1, U0, Q, R)
-K_optimal = lqr.solve()
+python automatica.py
 ```
 
 ## 📊 Results
-Our method is validated on an **active car suspension problem**, demonstrating superior robustness compared to existing methods. 
+Our method is validated on an **active car suspension simulation problem**, demonstrating superior robustness compared to existing methods. 
 
 <p align="center">
   <img src="results/suspension_performance.png" width="500" />
