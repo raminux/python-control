@@ -23,8 +23,8 @@ The key contributions of this work include:
 Clone the repository and install the required dependencies:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git
-cd YOUR-REPO
+git clone https://github.com/raminux/python-control.git
+cd published_papers_repo/Automatica
 pip install -r requirements.txt
 ```
 
