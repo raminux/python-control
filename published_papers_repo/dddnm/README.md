@@ -15,6 +15,9 @@ This repository presents a **direct data-driven control framework** for solving 
 ## 🛠️ Installation
 ```bash
 git clone <this-repo-url>
-cd noisy-ddc  # or your repo directory name
+cd dddnm  # or your repo directory name
+python3 -m venv venv
+source venv/bin/activate 
 pip install -r requirements.txt
+python runme.py
 
