@@ -29,8 +29,6 @@ You can cite this work as:
 }
 
 
----
-
 ## 📞 Contact
 
 For questions, feedback, or collaborations, feel free to reach out:
@@ -40,8 +38,6 @@ For questions, feedback, or collaborations, feel free to reach out:
   🔗 LinkedIn: [linkedin.com/in/ramin-esmzad](https://linkedin.com/in/ramin-esmzad)  
 
 
-
----
 
 ## 🛠️ Installation
 ```bash
