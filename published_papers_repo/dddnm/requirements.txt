@@ -1,0 +1,10 @@
+cvxpy
+numpy
+scipy
+control
+matplotlib
+math
+random
+logging
+csv
+mosek
