@@ -13,6 +13,33 @@ This repository presents a **direct, data-driven control framework** for solving
 ## 📚 Abstract
 > We present a novel direct data-driven control framework for solving the linear quadratic regulator (LQR) under disturbances and noisy state measurements. Our approach guarantees mean-square stability (MSS) and optimal performance by leveraging convex optimization techniques that incorporate noise statistics directly into the controller synthesis. … Extensive simulations on benchmark systems … demonstrate the superior robustness and accuracy of our method compared to existing data-driven LQR approaches. 
 
+## Cite this work 📄
+
+You can cite this work as:
+
+```bibtex
+@misc{esmzad2025dddnm,
+  title        = {{Direct Data Driven Control Using Noisy Measurements}},
+  author       = {Ramin Esmzad and Gokul S. Sankar and Teawon Han and Hamidreza Modares},
+  year         = {2025},
+  eprint       = {2505.06407},
+  archivePrefix= {arXiv},
+  primaryClass = {eess.SY},
+  url          = {https://arxiv.org/abs/2505.06407},
+}
+
+
+---
+
+## 📞 Contact
+
+For questions, feedback, or collaborations, feel free to reach out:
+
+- **Ramin Esmzad**  
+  ✉️ Email: [esmzadra@msu.edu](mailto:esmzadra@msu.edu)  
+  🔗 LinkedIn: [linkedin.com/in/ramin-esmzad](https://linkedin.com/in/ramin-esmzad)  
+
+
 
 ---
 
