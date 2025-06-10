@@ -8,10 +8,10 @@ https://arxiv.org/pdf/2505.06407
 
 
 ## 🚀 Overview
-This repository presents a **direct data-driven control framework** for solving Linear Quadratic Regulator (LQR) problems using solely noisy input-output measurements—without identifying the underlying dynamics. Our method guarantees **mean-square stability (MSS)** and **optimal performance**, employing convex optimization and robust controller synthesis via LMIs and SDP. The approach is validated through simulations on benchmarks like the rotary inverted pendulum and active suspension system, showing improvements over existing methods. :contentReference[oaicite:0]{index=0}
+This repository presents a **direct, data-driven control framework** for solving Linear Quadratic Regulator (LQR) problems using solely noisy input-output measurements, without requiring the identification of the underlying dynamics. Our method guarantees **mean-square stability (MSS)** and **optimal performance**, employing convex optimization and robust controller synthesis via linear matrix inequalities (LMIs) and semidefinite programming (SDP). The approach is validated through simulations on benchmarks like the rotary inverted pendulum and active suspension system, showing improvements over existing methods. 
 
 ## 📚 Abstract
-> We present a novel direct data-driven control framework for solving the linear quadratic regulator (LQR) under disturbances and noisy state measurements… Our approach guarantees mean-square stability (MSS) and optimal performance by leveraging convex optimization techniques that incorporate noise statistics directly into the controller synthesis. … Extensive simulations on benchmark systems … demonstrate the superior robustness and accuracy of our method compared to existing data-driven LQR approaches. :contentReference[oaicite:1]{index=1}
+> We present a novel direct data-driven control framework for solving the linear quadratic regulator (LQR) under disturbances and noisy state measurements. Our approach guarantees mean-square stability (MSS) and optimal performance by leveraging convex optimization techniques that incorporate noise statistics directly into the controller synthesis. … Extensive simulations on benchmark systems … demonstrate the superior robustness and accuracy of our method compared to existing data-driven LQR approaches. 
 
 
 ---
