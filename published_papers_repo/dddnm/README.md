@@ -1,7 +1,7 @@
 # Direct Data Driven Control Using Noisy Measurements 📊
 
 **Ramin Esmzad**, **Gokul S. Sankar**, **Teawon Han**, **Hamidreza Modares**  
-*Submitted May 9, 2025 • arXiv:2505.06407 [eess.SY, cs.LG, cs.RO, math.OC]*
+*Submitted to IEEE TAC May 2, 2025 • arXiv:2505.06407 [eess.SY, cs.LG, cs.RO, math.OC]*
 https://arxiv.org/pdf/2505.06407
 
 
