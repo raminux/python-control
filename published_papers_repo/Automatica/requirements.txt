@@ -1,0 +1,12 @@
+cvxpy
+numpy
+scipy
+control
+matplotlib
+math
+random
+logging
+csv
+mosek
+
+# Note: You need to install MOSEK for solving optimization problems with cvxpy.
