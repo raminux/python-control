@@ -39,7 +39,7 @@ For questions, feedback, or collaborations, feel free to reach out:
 
 
 
-## 🛠️ Installation
+## 🛠️ How To Run
 ```bash
 git clone <this-repo-url>
 cd dddnm  # or your repo directory name
